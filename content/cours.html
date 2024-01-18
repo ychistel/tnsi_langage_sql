@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+
+<html lang="fr" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SGBD et langage SQL &#8212; NSI</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5bbc778b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="../_static/documentation_options.js?v=72dce1d2"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/translations.js?v=d99ca74e"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/cours';</script>
+    <script src="../_static/custom.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Requêtes en langage SQL" href="exercice.html" />
+    <link rel="prev" title="Les jointures en SQL" href="activite_jointure.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="fr"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Passer au contenu principal</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Haut de page
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">NSI</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Recherche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="activite_sql.html">Langage SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="activite_jointure.html">Les jointures en SQL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SGBD et langage SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercice.html">Requêtes en langage SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercice_bac.html">Exercices bac</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/cours.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="clair/sombre" aria-label="clair/sombre" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Recherche" aria-label="Recherche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SGBD et langage SQL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qu-est-ce-qu-un-sgbd">Qu’est-ce qu’un SGBD ?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-langage-sql">Le langage SQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from">Clause SELECT … FROM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from-where">Clause SELECT … FROM … WHERE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-agregation">Les fonctions d’agrégation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-des-donnees">Insérer des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-a-jour-un-enregistrement-d-une-relation">Mettre à jour un enregistrement d’une relation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supprimer-un-enregistrement-d-une-relation">Supprimer un enregistrement d’une relation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-jointures-en-sql">Les jointures en SQL</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="toctree-wrapper compound">
+</div>
+<section id="sgbd-et-langage-sql">
+<h1>SGBD et langage SQL<a class="headerlink" href="#sgbd-et-langage-sql" title="Link to this heading">#</a></h1>
+<section id="qu-est-ce-qu-un-sgbd">
+<h2>Qu’est-ce qu’un SGBD ?<a class="headerlink" href="#qu-est-ce-qu-un-sgbd" title="Link to this heading">#</a></h2>
+<p><strong>SGBD</strong> est l’acronyme de <strong>S</strong>ystème de <strong>G</strong>estion de <strong>B</strong>ase de <strong>D</strong>onnées.</p>
+<p>Un SGBD est un logiciel qui permet de créer et gérer des bases de
+données accessibles à un ou plusieurs utilisateurs.</p>
+<p>Le langage utilisé dans les SGBD est le <strong>SQL</strong>, acronyme de
+<strong>S</strong>tructured <strong>Q</strong>uery <strong>L</strong>anguage.</p>
+<p>Les fonctionnalités d’un SGBD sont:</p>
+<ul class="simple">
+<li><p>créer des bases de données, ensemble de relations (tables);</p></li>
+<li><p>créer des relations (tables) à partir d’un schéma relationnel;</p></li>
+<li><p>ajouter, modifier, supprimer des données dans les relations
+(tables);</p></li>
+<li><p>effectuer des requêtes pour interroger les relations, obtenir des
+données, triées ou non, respectant une ou plusieurs conditions;</p></li>
+<li><p>spécifier les contraintes d’intégrités : clefs primaires, clefs
+étrangères, domaine de valeurs;</p></li>
+<li><p>sécuriser et pérenniser les données ;</p></li>
+<li><p>gérer les droits, permissions, des utilisateurs de la base de
+données.</p></li>
+</ul>
+<p class="rubric" id="modele-client-serveur">Modèle client - serveur</p>
+<figure class="align-center">
+<img alt="../_images/client_serveur.png" src="../_images/client_serveur.png" />
+</figure>
+<p>Un SGBD est un logiciel installé sur un serveur. Dans ce mode de
+fonctionnement, l’accès aux données à plusieurs utilisateurs est
+possible.</p>
+<p>Cela implique que le SGBD permette :</p>
+<ul class="simple">
+<li><p>de créer, supprimer des utilisateurs, gérer l’authentification
+(login, mot de passe) pour la connexion à une base de données;</p></li>
+<li><p>de gérer les permissions en lecture et écriture sur les relations
+de la base de données.</p></li>
+<li><p>de gérer les accès concurrents, c’est à dire autoriser la lecture
+et l’écriture des données à plusieurs utilisateurs en même temps.</p></li>
+</ul>
+<p>Il existe de nombreux SGBD qu’on peut classer en deux catégories :
+libre ou propriétaire.</p>
+<ul class="simple">
+<li><p>Parmi les logiciels libres : MySQL, PostgreSQL, MariaDB;</p></li>
+<li><p>Parmi les logiciels propriétaires : ORACLE et Microsoft SQL Server</p></li>
+</ul>
+<p class="rubric" id="modele-embarque">Modèle embarqué</p>
+<p><strong>SQLITE</strong> est un SGBD qui a la particularité de s’installer sur
+toute plateforme en mode dit embarqué (non serveur). Cela permet de
+gérer des bases de données sur une machine personnelle, très utile
+pour le développement.</p>
+</section>
+<section id="le-langage-sql">
+<h2>Le langage SQL<a class="headerlink" href="#le-langage-sql" title="Link to this heading">#</a></h2>
+<p>Le langage majoritairement utilisé dans les SGBD est le SQL :
+Structured Query Language.</p>
+<p>Ce langage permet de réaliser des <strong>requêtes</strong> sur les <strong>relations</strong>
+d’une base de données pour en extraire les données qu’elles contient.</p>
+<p>Le langage SQL utilise des <strong>clauses</strong> qui permettent:</p>
+<ul class="simple">
+<li><p>la sélection de données avec la clause <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. Elle peut être accompagnée des clauses <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> et
+<code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> pour affiner la recherche;</p></li>
+<li><p>L’ajout de données dans une relation avec la clause <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code>;</p></li>
+<li><p>La mise à jour ou la modification d’une donnée avec la clause <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>;</p></li>
+<li><p>La suppression d’un enregistrement d’une relation avec la clause <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Une requête SQL se termine par un point-virgule. Dans un client en console, la saisie du point virgule déclenche la requête.</p></li>
+<li><p>Une requête SQL peut s’écrire sur plusieurs lignes.</p></li>
+<li><p>Les clause présentées ci-dessus sont des clauses importantes mais il en existe beaucoup d’autres qui permettent de créer des
+relation, supprimer des relations, etc.</p></li>
+</ul>
+</div>
+<section id="clause-select-from">
+<h3>Clause SELECT … FROM<a class="headerlink" href="#clause-select-from" title="Link to this heading">#</a></h3>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">...</span> <span class="pre">FROM</span></code> réalise la sélection de données dans une relation:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut1</span><span class="p">,</span><span class="w"> </span><span class="n">attribut2</span><span class="p">,...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Cette clause peut s’accompagner de la clause <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> qui évite la redondance des données lorsque la requête
+renvoie plusieurs fois les mêmes valeurs.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">attribut1</span><span class="p">,</span><span class="w"> </span><span class="n">attribut2</span><span class="p">,...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La sélection de tous les attributs d’une table peut se faire avec l’étoile <code class="docutils literal notranslate"><span class="pre">\*</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La sélection peut être triée avec la clause <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>, soit par ordre croissant avec la clause <code class="docutils literal notranslate"><span class="pre">ASC</span></code> ou par ordre
+décroissant avec la clause <code class="docutils literal notranslate"><span class="pre">DESC</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">attribut</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="clause-select-from-where">
+<h3>Clause SELECT … FROM … WHERE<a class="headerlink" href="#clause-select-from-where" title="Link to this heading">#</a></h3>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> impose une <strong>condition</strong> sur l”<strong>attribut</strong> à respecter dans la requête:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Il est possible d’ajouter plusieurs conditions et utiliser les opérateurs logiques <code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> et <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
+<p>Les principaux opérateurs utilisés dans les conditions sont rassemblés dans le tableau:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Opérateur</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Syntaxe</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>=</p></td>
+<td><p>égal</p></td>
+<td><p>attribut =
+valeur</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(&lt;&gt;\)</span> ou !=</p></td>
+<td><p>différent</p></td>
+<td><p>attribut &lt;&gt;
+valeur</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(&gt;\)</span> et <span class="math notranslate nohighlight">\(&lt;\)</span></p></td>
+<td><p>supérieur à et inférieur
+à</p></td>
+<td><p>attribut &gt;
+valeur</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(&gt;=\)</span> et <span class="math notranslate nohighlight">\(&lt;=\)</span></p></td>
+<td><p>supérieur ou égal à et
+inférieur ou égal à</p></td>
+<td><p>attribut &gt;=
+valeur</p></td>
+</tr>
+<tr class="row-even"><td><p>IN</p></td>
+<td><p>Liste de plusieurs
+valeurs possibles</p></td>
+<td><p>attribut IN
+(valeur1,va
+leur2,valeur3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>BETWEEN</p></td>
+<td><p>Valeur comprise dans un
+intervalle donné</p></td>
+<td><p>attribut
+BETWEEN
+valeur1 AND
+valeur2</p></td>
+</tr>
+<tr class="row-even"><td><p>LIKE</p></td>
+<td><p>Recherche en spécifiant
+le début, milieu ou fin
+d’un mot</p></td>
+<td><p>attribut LIKE
+valeur</p></td>
+</tr>
+<tr class="row-odd"><td><p>IS NULL</p></td>
+<td><p>attribut de valeur nulle
+(vide)</p></td>
+<td><p>attribut IS
+NULL</p></td>
+</tr>
+<tr class="row-even"><td><p>IS NOT NULL</p></td>
+<td><p>attribut de valeur non
+nulle (non vide)</p></td>
+<td><p>attribut IS
+NOT NULL</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic">
+<li><p>Plusieurs conditions sont possibles avec les opérateurs AND et OR;</p></li>
+<li><p>La négation d’une condition se fait avec NOT.</p></li>
+<li><p>Le caractère % s’utilise avec l’opérateur LIKE et signifie toute chaine de caractères.</p>
+<p>Par exemple, pour tous les mots qui commençent par <strong>ch</strong>, on note <code class="docutils literal notranslate"><span class="pre">LIKE</span> <span class="pre">ch%</span></code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonition-exemples-avec-la-clause-where admonition">
+<p class="admonition-title">Exemples avec la clause WHERE</p>
+<p>On considère une relation <strong>auteur</strong> avec les 2 attributs <strong>nom</strong> et <strong>année</strong> (de naissance).</p>
+<ol class="arabic simple">
+<li><p>On recherche les noms des auteurs nés en 1980.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">année</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1980</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>On recherche les noms des auteurs nés entre 1980 et 2000</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">année</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1980</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>On recherche les noms des auteurs qui commencent par la lettre « S »</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;S%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>On recherche les noms des auteurs qui finissent par la lettre « p »</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%p&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>On recherche les noms des auteurs contenus dans la liste (« Rowling », »Vargas »)</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;Rowling&quot;</span><span class="p">,</span><span class="ss">&quot;Vargas&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>On recherche les noms des auteurs qui sont vides</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="les-fonctions-d-agregation">
+<h3>Les fonctions d’agrégation<a class="headerlink" href="#les-fonctions-d-agregation" title="Link to this heading">#</a></h3>
+<p>Les fonctions d’agrégation permettent d’effectuer quelques statistiques sur les relations d’une base de données. Les principales
+fonctions sont les suivantes :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AVG()</span></code> pour calculer la moyenne des valeurs d’un attribut;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> pour compter le nombre d’enregistrements sur une table ou un un attribut précisé;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAX()</span></code> pour récupérer la valeur maximum d’un attribut sur un ensemble de ligne. Cela s’applique à la fois pour des données
+numériques ou alphanumériques;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MIN()</span></code> pour récupérer la valeur minimum de la même manière que <code class="docutils literal notranslate"><span class="pre">MAX()</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUM()</span></code> pour calculer la somme de valeurs sur un ensemble d’enregistrements.</p></li>
+</ul>
+<p>Ces fonctions se placent juste après la clause <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. La requête peut être soumise à condition(s) mais non obligatoire.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Fonction</span><span class="w"> </span><span class="n">agrégation</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="inserer-des-donnees">
+<h3>Insérer des données<a class="headerlink" href="#inserer-des-donnees" title="Link to this heading">#</a></h3>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">...</span> <span class="pre">VALUES</span> <span class="pre">...</span></code> ajoute un enregistrement (tuple) à une relation. Il faut indiquer le nom de la
+relation en précisant les attributs, entre parenthèses, et indiquer les valeurs à ajouter entre parenthèses.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="p">(</span><span class="n">attribut1</span><span class="p">,</span><span class="w"> </span><span class="n">attribut2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">valeur1</span><span class="p">,</span><span class="w"> </span><span class="n">valeur2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+</div>
+<p>Dans la même requête, il est possible d’ajouter plusieurs nouveaux enregistrements séparés par des virgules.</p>
+<div class="admonition-exemples-avec-la-clause-insert-into admonition">
+<p class="admonition-title">Exemples avec la clause INSERT INTO</p>
+<p>On considère la relation <strong>auteur</strong> contenant les attributs <strong>nom</strong>, <strong>année</strong> et la clé primaire <strong>id_auteur</strong>.</p>
+<ol class="arabic">
+<li><p>Insertion de l’auteur « Rowling » née en 1965 :</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="p">(</span><span class="n">id_auteur</span><span class="p">,</span><span class="w"> </span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="n">année</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="ss">&quot;Rowling&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1965</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Insertion des auteurs J. R. R. « Tolkien » né en 1892 et George R. R. « Martin » né en 1948:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="p">(</span><span class="n">id_auteur</span><span class="p">,</span><span class="w"> </span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="n">année</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="ss">&quot;Tolkien&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1892</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="ss">&quot;Martin&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1948</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>Il n’est pas obligatoire de préciser les attributs mais il faut bien veiller à mettre les valeurs dans l’ordre
+des attributs de la relation.</p></li>
+<li><p>On peut mettre les attributs dans un ordre différent en prenant soin de mettre les valeurs dans le même ordre.</p></li>
+</ol>
+</div>
+</section>
+<section id="mettre-a-jour-un-enregistrement-d-une-relation">
+<h3>Mettre à jour un enregistrement d’une relation<a class="headerlink" href="#mettre-a-jour-un-enregistrement-d-une-relation" title="Link to this heading">#</a></h3>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> permet de mettre à jour une relation en modifiant des valeurs. La requête doit préciser l’attribut
+à modifier avec sa nouvelle valeur et le même attribut avec son ancienne valeur sous la forme d’une condition.</p>
+<p>La syntaxe est la suivante:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">attribut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nouvelle</span><span class="w"> </span><span class="n">valeur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">attribut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ancienne</span><span class="w"> </span><span class="n">valeur</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La condition n’est pas nécessairement une égalité stricte. Si la condition renvoie plusieurs enregistrements, ils
+seront tous mis à jour avec la nouvelle valeur.</p>
+<div class="admonition-exemple-de-requete-de-mise-a-jour admonition">
+<p class="admonition-title">Exemple de requête de mise à jour</p>
+<p>On conserve la relation auteur pour laquelle on souhaite modifiée une année de naissance.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">année</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2001</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nom</span><span class="o">=</span><span class="ss">&quot;Rowling&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="supprimer-un-enregistrement-d-une-relation">
+<h3>Supprimer un enregistrement d’une relation<a class="headerlink" href="#supprimer-un-enregistrement-d-une-relation" title="Link to this heading">#</a></h3>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">FROM</span></code> supprime un enregistrement. Cette clause s’accompagne d’une condition pour déterminer les
+enregistrements à supprimer. La requête SQL est exécutée sans demande de confirmation.</p>
+<p>La syntaxe est la suivante:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition-exemple-de-suppression admonition">
+<p class="admonition-title">Exemple de suppression</p>
+<p>On conserve la relation auteur pour laquelle on souhaite modifiée une
+année de naissance.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nom</span><span class="o">=</span><span class="ss">&quot;Rowling&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Si la clause <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> n’est pas donnée dans un <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>, alors tous les enregistrements de la relation sont supprimés.</p>
+</div>
+</section>
+</section>
+<section id="les-jointures-en-sql">
+<h2>Les jointures en SQL<a class="headerlink" href="#les-jointures-en-sql" title="Link to this heading">#</a></h2>
+<p>Les données à recueillir peuvent se situées dans des relations différentes. Pour les obtenir, il est donc nécessaire de
+joindre les relations.</p>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> permet de rassembler deux ou plusieurs relations à l’aide des <strong>clés étrangères</strong>.</p>
+<p>La syntaxe est la suivante pour effectuer une jointure:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation1</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">relation2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">relation1</span><span class="p">.</span><span class="n">clef_etrangere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">relation2</span><span class="p">.</span><span class="n">clef_primaire</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Il est possible de joindre plusieurs relations:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation1</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">relation2</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">relation1</span><span class="p">.</span><span class="n">clef_etrangere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">relation2</span><span class="p">.</span><span class="n">clef_primaire</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">relation3</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">relation2</span><span class="p">.</span><span class="n">clef_etrangere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">relation3</span><span class="p">.</span><span class="n">clef_primaire</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>Les attributs appartiennent aux relations jointes et pas seulement la première relation indiquée.</p></li>
+<li><p>Il est important de repérer les clés étrangères pour les relier aux clés primaires correspondantes.</p></li>
+<li><p>Si les clés étrangères et primaires n’ont pas le même nom, il n’est pas utile de les préfixer par le nom des relations.</p></li>
+<li><p>On peut également ajouter la clause <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> aux clauses <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>.</p></li>
+</ol>
+</div>
+<div class="admonition-exemple-de-jointure admonition">
+<p class="admonition-title">Exemple de jointure</p>
+<p>On considère la base de données selon le modèle relationnel suivant:</p>
+<a class="b-8 reference internal image-reference" href="../_images/schema_relationnel_ex1.png"><img alt="schema_relationnel_ex1.png" class="b-8 align-center" src="../_images/schema_relationnel_ex1.png" style="width: 460px;" /></a>
+<ol class="arabic">
+<li><p>On souhaite recueillir les titres des livres et les dates d’emprunts. Ces données sont dans deux relations différentes.
+Heureusement la table <strong>Emprunts</strong> dispose d’une clé étrangère la reliant à la relation <strong>Livres</strong>.</p>
+<p>On réalise donc une jointure entre les tables <strong>Livres</strong> et <strong>Emprunts</strong>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">dateEmprunt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Livres</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Emprunts</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Livres</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Emprunt</span><span class="p">.</span><span class="n">isbn</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>On peut soumettre cette recherche aux livres empruntés avant une date donnée.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">dateEmprunt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Livres</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Emprunts</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Livres</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Emprunt</span><span class="p">.</span><span class="n">isbn</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">dateEmprunt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10012022</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>On veut récupérer les noms des élèves qui n’ont pas encore rendu les livres empruntés. Il faut joindre la
+troisième relation <strong>Eleves</strong> avec la clef étrangère <strong>idEleve</strong>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">dateEmprunt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Livres</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Emprunts</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Livres</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Emprunt</span><span class="p">.</span><span class="n">isbn</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Eleves</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Eleves</span><span class="p">.</span><span class="n">idEleve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Livres</span><span class="p">.</span><span class="n">idEleve</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">dateEmprunt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10012022</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="activite_jointure.html"
+       title="page précédente">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">précédent</p>
+        <p class="prev-next-title">Les jointures en SQL</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="exercice.html"
+       title="page suivante">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">suivant</p>
+        <p class="prev-next-title">Requêtes en langage SQL</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qu-est-ce-qu-un-sgbd">Qu’est-ce qu’un SGBD ?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-langage-sql">Le langage SQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from">Clause SELECT … FROM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from-where">Clause SELECT … FROM … WHERE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-agregation">Les fonctions d’agrégation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-des-donnees">Insérer des données</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-a-jour-un-enregistrement-d-une-relation">Mettre à jour un enregistrement d’une relation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supprimer-un-enregistrement-d-une-relation">Supprimer un enregistrement d’une relation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-jointures-en-sql">Les jointures en SQL</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Yannick Chistel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023,Yannick Chistel.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
