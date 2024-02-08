@@ -1,84 +1,13 @@
-.. TNSI
+Langage SQL
+===========
 
-.. toctree::
-   :maxdepth: 1
+Le langage majoritairement utilisé dans les SGBD est le SQL acronyme de Structured Query Language.
 
-SGBD et langage SQL
-===================
-
-Qu'est-ce qu'un SGBD ?
-----------------------
-
-
-**SGBD** est l'acronyme de **S**\ ystème de **G**\ estion de **B**\ ase de **D**\ onnées.
-
-Un SGBD est un logiciel qui permet de créer et gérer des bases de
-données accessibles à un ou plusieurs utilisateurs.
-
-Le langage utilisé dans les SGBD est le **SQL**, acronyme de
-**S**\ tructured **Q**\ uery **L**\ anguage.
-
-Les fonctionnalités d'un SGBD sont:
-
--  créer des bases de données, ensemble de relations (tables);
--  créer des relations (tables) à partir d'un schéma relationnel;
--  ajouter, modifier, supprimer des données dans les relations
-   (tables);
--  effectuer des requêtes pour interroger les relations, obtenir des
-   données, triées ou non, respectant une ou plusieurs conditions;
--  spécifier les contraintes d'intégrités : clefs primaires, clefs
-   étrangères, domaine de valeurs;
--  sécuriser et pérenniser les données ;
--  gérer les droits, permissions, des utilisateurs de la base de
-   données.
-
-.. rubric:: Modèle client - serveur
-   :name: modèle-client---serveur
-
-.. figure:: ../img/client_serveur.png
-   :align: center
-   
-Un SGBD est un logiciel installé sur un serveur. Dans ce mode de
-fonctionnement, l'accès aux données à plusieurs utilisateurs est
-possible.
-
-Cela implique que le SGBD permette :
-
--  de créer, supprimer des utilisateurs, gérer l'authentification
-   (login, mot de passe) pour la connexion à une base de données;
--  de gérer les permissions en lecture et écriture sur les relations
-   de la base de données.
--  de gérer les accès concurrents, c'est à dire autoriser la lecture
-   et l'écriture des données à plusieurs utilisateurs en même temps.
-
-Il existe de nombreux SGBD qu'on peut classer en deux catégories :
-libre ou propriétaire.
-
--  Parmi les logiciels libres : MySQL, PostgreSQL, MariaDB;
--  Parmi les logiciels propriétaires : ORACLE et Microsoft SQL Server
-
-.. rubric:: Modèle embarqué
-   :name: modèle-embarqué
-
-**SQLITE** est un SGBD qui a la particularité de s'installer sur
-toute plateforme en mode dit embarqué (non serveur). Cela permet de
-gérer des bases de données sur une machine personnelle, très utile
-pour le développement.
-
-
-Le langage SQL
---------------
-
-Le langage majoritairement utilisé dans les SGBD est le SQL :
-Structured Query Language.
-
-Ce langage permet de réaliser des **requêtes** sur les **relations**
-d'une base de données pour en extraire les données qu'elles contient.
+Ce langage permet de réaliser des **requêtes** sur les **relations** d'une base de données pour en extraire les données qu'elles contient.
 
 Le langage SQL utilise des **clauses** qui permettent:
 
--  la sélection de données avec la clause ``SELECT``. Elle peut être accompagnée des clauses ``DISTINCT``, ``WHERE`` et
-   ``ORDER BY`` pour affiner la recherche;
+-  la sélection de données avec la clause ``SELECT``. Elle peut être accompagnée des clauses ``DISTINCT``, ``WHERE`` et ``ORDER BY`` pour affiner la recherche;
 -  L'ajout de données dans une relation avec la clause ``INSERT INTO``;
 -  La mise à jour ou la modification d'une donnée avec la clause ``UPDATE``;
 -  La suppression d'un enregistrement d'une relation avec la clause ``DELETE``.
@@ -87,11 +16,10 @@ Le langage SQL utilise des **clauses** qui permettent:
 
    -  Une requête SQL se termine par un point-virgule. Dans un client en console, la saisie du point virgule déclenche la requête.
    -  Une requête SQL peut s'écrire sur plusieurs lignes.
-   -  Les clause présentées ci-dessus sont des clauses importantes mais il en existe beaucoup d'autres qui permettent de créer des
-      relation, supprimer des relations, etc.
+   -  Les clause présentées ci-dessus sont des clauses importantes mais il en existe beaucoup d'autres qui permettent de créer des relation, supprimer des relations, etc.
 
 Clause SELECT ... FROM
-**********************
+----------------------
 
 La clause ``SELECT ... FROM`` réalise la sélection de données dans une relation:
 
@@ -121,7 +49,7 @@ décroissant avec la clause ``DESC``:
 
 
 Clause SELECT ... FROM ... WHERE
-*********************************
+--------------------------------
 
 La clause ``WHERE`` impose une **condition** sur l'**attribut** à respecter dans la requête:
 
@@ -219,15 +147,14 @@ Les principaux opérateurs utilisés dans les conditions sont rassemblés dans l
 
 
 Les fonctions d'agrégation
-**************************
+---------------------------
 
 Les fonctions d'agrégation permettent d'effectuer quelques statistiques sur les relations d'une base de données. Les principales
 fonctions sont les suivantes :
 
 -  ``AVG()`` pour calculer la moyenne des valeurs d'un attribut;
 -  ``COUNT()`` pour compter le nombre d'enregistrements sur une table ou un un attribut précisé;
--  ``MAX()`` pour récupérer la valeur maximum d'un attribut sur un ensemble de ligne. Cela s'applique à la fois pour des données
-   numériques ou alphanumériques;
+-  ``MAX()`` pour récupérer la valeur maximum d'un attribut sur un ensemble de ligne. Cela s'applique à la fois pour des données numériques ou alphanumériques;
 -  ``MIN()`` pour récupérer la valeur minimum de la même manière que ``MAX()``;
 -  ``SUM()`` pour calculer la somme de valeurs sur un ensemble d'enregistrements.
 
@@ -238,10 +165,9 @@ Ces fonctions se placent juste après la clause ``SELECT``. La requête peut êt
    SELECT Fonction agrégation FROM relation WHERE condition(s);
 
 Insérer des données
-*******************
+-------------------
 
-La clause ``INSERT INTO ... VALUES ...`` ajoute un enregistrement (tuple) à une relation. Il faut indiquer le nom de la
-relation en précisant les attributs, entre parenthèses, et indiquer les valeurs à ajouter entre parenthèses.
+La clause ``INSERT INTO ... VALUES ...`` ajoute un enregistrement (tuple) à une relation. Il faut indiquer le nom de la relation en précisant les attributs, entre parenthèses, et indiquer les valeurs à ajouter entre parenthèses.
 
 .. code:: sql
 
@@ -273,10 +199,9 @@ Dans la même requête, il est possible d'ajouter plusieurs nouveaux enregistrem
    #. On peut mettre les attributs dans un ordre différent en prenant soin de mettre les valeurs dans le même ordre.
 
 Mettre à jour un enregistrement d'une relation
-**********************************************
+----------------------------------------------
 
-La clause ``UPDATE`` permet de mettre à jour une relation en modifiant des valeurs. La requête doit préciser l'attribut
-à modifier avec sa nouvelle valeur et le même attribut avec son ancienne valeur sous la forme d'une condition.
+La clause ``UPDATE`` permet de mettre à jour une relation en modifiant des valeurs. La requête doit préciser l'attribut à modifier avec sa nouvelle valeur et le même attribut avec son ancienne valeur sous la forme d'une condition.
 
 La syntaxe est la suivante:
 
@@ -297,7 +222,7 @@ seront tous mis à jour avec la nouvelle valeur.
 
 
 Supprimer un enregistrement d'une relation
-******************************************
+------------------------------------------
 
 La clause ``DELETE FROM`` supprime un enregistrement. Cette clause s'accompagne d'une condition pour déterminer les
 enregistrements à supprimer. La requête SQL est exécutée sans demande de confirmation.
@@ -325,8 +250,7 @@ La syntaxe est la suivante:
 Les jointures en SQL
 --------------------
 
-Les données à recueillir peuvent se situées dans des relations différentes. Pour les obtenir, il est donc nécessaire de
-joindre les relations.
+Les données à recueillir peuvent se situées dans des relations différentes. Pour les obtenir, il est donc nécessaire de joindre les relations.
 
 La clause ``JOIN`` permet de rassembler deux ou plusieurs relations à l'aide des **clés étrangères**.
 
