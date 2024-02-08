@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>SGBD et langage SQL &#8212; NSI</title>
+    <title>Langage SQL &#8212; NSI</title>
   
   
   
@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
@@ -33,9 +33,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5bbc778b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=72dce1d2"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
@@ -63,7 +63,6 @@
   <a id="pst-skip-link" class="skip-link" href="#main-content">Passer au contenu principal</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -103,20 +102,15 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -160,7 +154,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="activite_sql.html">Langage SQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="activite_jointure.html">Les jointures en SQL</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">SGBD et langage SQL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Langage SQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercice.html">Requêtes en langage SQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercice_bac.html">Exercices bac</a></li>
 </ul>
@@ -301,7 +295,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>SGBD et langage SQL</h1>
+    <h1>Langage SQL</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -311,16 +305,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qu-est-ce-qu-un-sgbd">Qu’est-ce qu’un SGBD ?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-langage-sql">Le langage SQL</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from">Clause SELECT … FROM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from-where">Clause SELECT … FROM … WHERE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-agregation">Les fonctions d’agrégation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-des-donnees">Insérer des données</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-a-jour-un-enregistrement-d-une-relation">Mettre à jour un enregistrement d’une relation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supprimer-un-enregistrement-d-une-relation">Supprimer un enregistrement d’une relation</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from">Clause SELECT … FROM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from-where">Clause SELECT … FROM … WHERE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-agregation">Les fonctions d’agrégation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-des-donnees">Insérer des données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-a-jour-un-enregistrement-d-une-relation">Mettre à jour un enregistrement d’une relation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supprimer-un-enregistrement-d-une-relation">Supprimer un enregistrement d’une relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-jointures-en-sql">Les jointures en SQL</a></li>
 </ul>
             </nav>
@@ -333,69 +323,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="toctree-wrapper compound">
-</div>
-<section id="sgbd-et-langage-sql">
-<h1>SGBD et langage SQL<a class="headerlink" href="#sgbd-et-langage-sql" title="Link to this heading">#</a></h1>
-<section id="qu-est-ce-qu-un-sgbd">
-<h2>Qu’est-ce qu’un SGBD ?<a class="headerlink" href="#qu-est-ce-qu-un-sgbd" title="Link to this heading">#</a></h2>
-<p><strong>SGBD</strong> est l’acronyme de <strong>S</strong>ystème de <strong>G</strong>estion de <strong>B</strong>ase de <strong>D</strong>onnées.</p>
-<p>Un SGBD est un logiciel qui permet de créer et gérer des bases de
-données accessibles à un ou plusieurs utilisateurs.</p>
-<p>Le langage utilisé dans les SGBD est le <strong>SQL</strong>, acronyme de
-<strong>S</strong>tructured <strong>Q</strong>uery <strong>L</strong>anguage.</p>
-<p>Les fonctionnalités d’un SGBD sont:</p>
-<ul class="simple">
-<li><p>créer des bases de données, ensemble de relations (tables);</p></li>
-<li><p>créer des relations (tables) à partir d’un schéma relationnel;</p></li>
-<li><p>ajouter, modifier, supprimer des données dans les relations
-(tables);</p></li>
-<li><p>effectuer des requêtes pour interroger les relations, obtenir des
-données, triées ou non, respectant une ou plusieurs conditions;</p></li>
-<li><p>spécifier les contraintes d’intégrités : clefs primaires, clefs
-étrangères, domaine de valeurs;</p></li>
-<li><p>sécuriser et pérenniser les données ;</p></li>
-<li><p>gérer les droits, permissions, des utilisateurs de la base de
-données.</p></li>
-</ul>
-<p class="rubric" id="modele-client-serveur">Modèle client - serveur</p>
-<figure class="align-center">
-<img alt="../_images/client_serveur.png" src="../_images/client_serveur.png" />
-</figure>
-<p>Un SGBD est un logiciel installé sur un serveur. Dans ce mode de
-fonctionnement, l’accès aux données à plusieurs utilisateurs est
-possible.</p>
-<p>Cela implique que le SGBD permette :</p>
-<ul class="simple">
-<li><p>de créer, supprimer des utilisateurs, gérer l’authentification
-(login, mot de passe) pour la connexion à une base de données;</p></li>
-<li><p>de gérer les permissions en lecture et écriture sur les relations
-de la base de données.</p></li>
-<li><p>de gérer les accès concurrents, c’est à dire autoriser la lecture
-et l’écriture des données à plusieurs utilisateurs en même temps.</p></li>
-</ul>
-<p>Il existe de nombreux SGBD qu’on peut classer en deux catégories :
-libre ou propriétaire.</p>
-<ul class="simple">
-<li><p>Parmi les logiciels libres : MySQL, PostgreSQL, MariaDB;</p></li>
-<li><p>Parmi les logiciels propriétaires : ORACLE et Microsoft SQL Server</p></li>
-</ul>
-<p class="rubric" id="modele-embarque">Modèle embarqué</p>
-<p><strong>SQLITE</strong> est un SGBD qui a la particularité de s’installer sur
-toute plateforme en mode dit embarqué (non serveur). Cela permet de
-gérer des bases de données sur une machine personnelle, très utile
-pour le développement.</p>
-</section>
-<section id="le-langage-sql">
-<h2>Le langage SQL<a class="headerlink" href="#le-langage-sql" title="Link to this heading">#</a></h2>
-<p>Le langage majoritairement utilisé dans les SGBD est le SQL :
-Structured Query Language.</p>
-<p>Ce langage permet de réaliser des <strong>requêtes</strong> sur les <strong>relations</strong>
-d’une base de données pour en extraire les données qu’elles contient.</p>
+  <section id="langage-sql">
+<h1>Langage SQL<a class="headerlink" href="#langage-sql" title="Link to this heading">#</a></h1>
+<p>Le langage majoritairement utilisé dans les SGBD est le SQL acronyme de Structured Query Language.</p>
+<p>Ce langage permet de réaliser des <strong>requêtes</strong> sur les <strong>relations</strong> d’une base de données pour en extraire les données qu’elles contient.</p>
 <p>Le langage SQL utilise des <strong>clauses</strong> qui permettent:</p>
 <ul class="simple">
-<li><p>la sélection de données avec la clause <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. Elle peut être accompagnée des clauses <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> et
-<code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> pour affiner la recherche;</p></li>
+<li><p>la sélection de données avec la clause <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. Elle peut être accompagnée des clauses <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> et <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> pour affiner la recherche;</p></li>
 <li><p>L’ajout de données dans une relation avec la clause <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code>;</p></li>
 <li><p>La mise à jour ou la modification d’une donnée avec la clause <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>;</p></li>
 <li><p>La suppression d’un enregistrement d’une relation avec la clause <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>.</p></li>
@@ -405,12 +339,11 @@ d’une base de données pour en extraire les données qu’elles contient.</p>
 <ul class="simple">
 <li><p>Une requête SQL se termine par un point-virgule. Dans un client en console, la saisie du point virgule déclenche la requête.</p></li>
 <li><p>Une requête SQL peut s’écrire sur plusieurs lignes.</p></li>
-<li><p>Les clause présentées ci-dessus sont des clauses importantes mais il en existe beaucoup d’autres qui permettent de créer des
-relation, supprimer des relations, etc.</p></li>
+<li><p>Les clause présentées ci-dessus sont des clauses importantes mais il en existe beaucoup d’autres qui permettent de créer des relation, supprimer des relations, etc.</p></li>
 </ul>
 </div>
 <section id="clause-select-from">
-<h3>Clause SELECT … FROM<a class="headerlink" href="#clause-select-from" title="Link to this heading">#</a></h3>
+<h2>Clause SELECT … FROM<a class="headerlink" href="#clause-select-from" title="Link to this heading">#</a></h2>
 <p>La clause <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">...</span> <span class="pre">FROM</span></code> réalise la sélection de données dans une relation:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut1</span><span class="p">,</span><span class="w"> </span><span class="n">attribut2</span><span class="p">,...</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="p">;</span>
 </pre></div>
@@ -431,7 +364,7 @@ décroissant avec la clause <code class="docutils literal notranslate"><span cla
 </div>
 </section>
 <section id="clause-select-from-where">
-<h3>Clause SELECT … FROM … WHERE<a class="headerlink" href="#clause-select-from-where" title="Link to this heading">#</a></h3>
+<h2>Clause SELECT … FROM … WHERE<a class="headerlink" href="#clause-select-from-where" title="Link to this heading">#</a></h2>
 <p>La clause <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> impose une <strong>condition</strong> sur l”<strong>attribut</strong> à respecter dans la requête:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
 </pre></div>
@@ -556,14 +489,13 @@ NOT NULL</p></td>
 </div>
 </section>
 <section id="les-fonctions-d-agregation">
-<h3>Les fonctions d’agrégation<a class="headerlink" href="#les-fonctions-d-agregation" title="Link to this heading">#</a></h3>
+<h2>Les fonctions d’agrégation<a class="headerlink" href="#les-fonctions-d-agregation" title="Link to this heading">#</a></h2>
 <p>Les fonctions d’agrégation permettent d’effectuer quelques statistiques sur les relations d’une base de données. Les principales
 fonctions sont les suivantes :</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">AVG()</span></code> pour calculer la moyenne des valeurs d’un attribut;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> pour compter le nombre d’enregistrements sur une table ou un un attribut précisé;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MAX()</span></code> pour récupérer la valeur maximum d’un attribut sur un ensemble de ligne. Cela s’applique à la fois pour des données
-numériques ou alphanumériques;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAX()</span></code> pour récupérer la valeur maximum d’un attribut sur un ensemble de ligne. Cela s’applique à la fois pour des données numériques ou alphanumériques;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MIN()</span></code> pour récupérer la valeur minimum de la même manière que <code class="docutils literal notranslate"><span class="pre">MAX()</span></code>;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SUM()</span></code> pour calculer la somme de valeurs sur un ensemble d’enregistrements.</p></li>
 </ul>
@@ -573,9 +505,8 @@ numériques ou alphanumériques;</p></li>
 </div>
 </section>
 <section id="inserer-des-donnees">
-<h3>Insérer des données<a class="headerlink" href="#inserer-des-donnees" title="Link to this heading">#</a></h3>
-<p>La clause <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">...</span> <span class="pre">VALUES</span> <span class="pre">...</span></code> ajoute un enregistrement (tuple) à une relation. Il faut indiquer le nom de la
-relation en précisant les attributs, entre parenthèses, et indiquer les valeurs à ajouter entre parenthèses.</p>
+<h2>Insérer des données<a class="headerlink" href="#inserer-des-donnees" title="Link to this heading">#</a></h2>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">...</span> <span class="pre">VALUES</span> <span class="pre">...</span></code> ajoute un enregistrement (tuple) à une relation. Il faut indiquer le nom de la relation en précisant les attributs, entre parenthèses, et indiquer les valeurs à ajouter entre parenthèses.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="p">(</span><span class="n">attribut1</span><span class="p">,</span><span class="w"> </span><span class="n">attribut2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">valeur1</span><span class="p">,</span><span class="w"> </span><span class="n">valeur2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
 </pre></div>
 </div>
@@ -607,9 +538,8 @@ des attributs de la relation.</p></li>
 </div>
 </section>
 <section id="mettre-a-jour-un-enregistrement-d-une-relation">
-<h3>Mettre à jour un enregistrement d’une relation<a class="headerlink" href="#mettre-a-jour-un-enregistrement-d-une-relation" title="Link to this heading">#</a></h3>
-<p>La clause <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> permet de mettre à jour une relation en modifiant des valeurs. La requête doit préciser l’attribut
-à modifier avec sa nouvelle valeur et le même attribut avec son ancienne valeur sous la forme d’une condition.</p>
+<h2>Mettre à jour un enregistrement d’une relation<a class="headerlink" href="#mettre-a-jour-un-enregistrement-d-une-relation" title="Link to this heading">#</a></h2>
+<p>La clause <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> permet de mettre à jour une relation en modifiant des valeurs. La requête doit préciser l’attribut à modifier avec sa nouvelle valeur et le même attribut avec son ancienne valeur sous la forme d’une condition.</p>
 <p>La syntaxe est la suivante:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">relation</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">attribut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nouvelle</span><span class="w"> </span><span class="n">valeur</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">attribut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ancienne</span><span class="w"> </span><span class="n">valeur</span><span class="p">;</span>
 </pre></div>
@@ -625,7 +555,7 @@ seront tous mis à jour avec la nouvelle valeur.</p>
 </div>
 </section>
 <section id="supprimer-un-enregistrement-d-une-relation">
-<h3>Supprimer un enregistrement d’une relation<a class="headerlink" href="#supprimer-un-enregistrement-d-une-relation" title="Link to this heading">#</a></h3>
+<h2>Supprimer un enregistrement d’une relation<a class="headerlink" href="#supprimer-un-enregistrement-d-une-relation" title="Link to this heading">#</a></h2>
 <p>La clause <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">FROM</span></code> supprime un enregistrement. Cette clause s’accompagne d’une condition pour déterminer les
 enregistrements à supprimer. La requête SQL est exécutée sans demande de confirmation.</p>
 <p>La syntaxe est la suivante:</p>
@@ -645,11 +575,9 @@ année de naissance.</p>
 <p>Si la clause <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> n’est pas donnée dans un <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>, alors tous les enregistrements de la relation sont supprimés.</p>
 </div>
 </section>
-</section>
 <section id="les-jointures-en-sql">
 <h2>Les jointures en SQL<a class="headerlink" href="#les-jointures-en-sql" title="Link to this heading">#</a></h2>
-<p>Les données à recueillir peuvent se situées dans des relations différentes. Pour les obtenir, il est donc nécessaire de
-joindre les relations.</p>
+<p>Les données à recueillir peuvent se situées dans des relations différentes. Pour les obtenir, il est donc nécessaire de joindre les relations.</p>
 <p>La clause <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> permet de rassembler deux ou plusieurs relations à l’aide des <strong>clés étrangères</strong>.</p>
 <p>La syntaxe est la suivante pour effectuer une jointure:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">attribut</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">relation1</span>
@@ -750,16 +678,12 @@ troisième relation <strong>Eleves</strong> avec la clef étrangère <strong>idE
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qu-est-ce-qu-un-sgbd">Qu’est-ce qu’un SGBD ?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-langage-sql">Le langage SQL</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from">Clause SELECT … FROM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from-where">Clause SELECT … FROM … WHERE</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-agregation">Les fonctions d’agrégation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-des-donnees">Insérer des données</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-a-jour-un-enregistrement-d-une-relation">Mettre à jour un enregistrement d’une relation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supprimer-un-enregistrement-d-une-relation">Supprimer un enregistrement d’une relation</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from">Clause SELECT … FROM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-select-from-where">Clause SELECT … FROM … WHERE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-fonctions-d-agregation">Les fonctions d’agrégation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inserer-des-donnees">Insérer des données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mettre-a-jour-un-enregistrement-d-une-relation">Mettre à jour un enregistrement d’une relation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supprimer-un-enregistrement-d-une-relation">Supprimer un enregistrement d’une relation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-jointures-en-sql">Les jointures en SQL</a></li>
 </ul>
   </nav></div>
@@ -809,8 +733,8 @@ Par Yannick Chistel
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
